@@ -3,8 +3,8 @@ https://www.researchsquare.com/article/rs-4291782/v1
 ## Model Structure  
 ![Test Image 1](/images/SegPhase-1.png)　　
 ## How to use  
-If you want to input from WIN files in - [main.py](/main.py) or - [main.ipynb](/main.ipynb),　　
-you need to install the WIN system.　　
+If you want to input from WIN files in - [main.py](/main.py) or - [main.ipynb](/main.ipynb),  
+you need to install the WIN system.  
 Please refer to the following site to download the WIN system.　　
 - [WIN](https://wwweic.eri.u-tokyo.ac.jp/WIN/Eindex.html)
 We also have test data for npz files for non-WIN as well. When you want to use npz files, please uncomment out accordingly.
