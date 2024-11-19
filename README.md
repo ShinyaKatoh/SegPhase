@@ -11,3 +11,5 @@ We also have test data for npz files as well. When you want to use npz files, pl
 If you want to run it in google colab,  
 please use [main_for_GoogleColab.ipynb](/main_for_GoogleColab.ipynb)  
 (However, input from win files is not possible.)
+
+For the 100 Hz model, the input to the model is (Batch size, channel, data length) = (Batch size, 3, 3000), and for the 250 Hz model, it is (Batch size, channel, data length) = (Batch size, 3, 7500). The order of the channel data is UD, NS, EW. For the M01 model, the input is (Batch size, channel, data length) = (Batch size, 1, 3000).
