@@ -193,7 +193,7 @@ class EncoderBlock(nn.Module):
         x = self.Encoder(x)
         return x
     
-class SegformerBlock(nn.Module):
+class TransformerBlock(nn.Module):
     def __init__(self, 
                  in_length,
                  in_channels, 
@@ -243,7 +243,7 @@ class ConvBNReLU(nn.Module):
         x = self.relu(x)
         return x
 
-class SegformerOutput(nn.Module):
+class Output(nn.Module):
     def __init__(self, 
                  ch1, ch2, ch3, 
                  st1, st2, st3,
@@ -328,9 +328,7 @@ class Model(nn.Module):
         self.bn2 = 3
         self.bn3 = 3
         
-        # self.seg_input = FutureMapInstanceNorm(in_length, in_channels, *[2, 3, 5, 6, 10, 15]) #30, 20, 15, 12, 10, 6, 5, 4, 3, 2
-        
-        self.seg_block1 = SegformerBlock(in_length = in_length,
+        self.seg_block1 = TransformerBlock(in_length = in_length,
                                          in_channels = in_channels, 
                                          emb_dim = self.ch1, 
                                          patch_size = self.ks1, 
@@ -340,7 +338,7 @@ class Model(nn.Module):
                                          expantion_ratio = expantion_ratio, 
                                          block_num = self.bn1)
         
-        self.seg_block2 = SegformerBlock(in_length = in_length//self.st1,
+        self.seg_block2 = TransformerBlock(in_length = in_length//self.st1,
                                          in_channels = self.ch1, 
                                          emb_dim = self.ch2, 
                                          patch_size = self.ks2, 
@@ -350,7 +348,7 @@ class Model(nn.Module):
                                          expantion_ratio = expantion_ratio, 
                                          block_num = self.bn2)
         
-        self.seg_block3 = SegformerBlock(in_length = in_length//(self.st1*self.st2),
+        self.seg_block3 = TransformerBlock(in_length = in_length//(self.st1*self.st2),
                                          in_channels = self.ch2, 
                                          emb_dim = self.ch3, 
                                          patch_size = self.ks3, 
@@ -360,13 +358,12 @@ class Model(nn.Module):
                                          expantion_ratio = expantion_ratio, 
                                          block_num = self.bn3)
         
-        self.output = SegformerOutput(self.ch3, self.ch2, self.ch1, 
+        self.output = Output(self.ch3, self.ch2, self.ch1, 
                                       self.st3, self.st2, self.st1,
                                       kernel_size,
                                       class_num)
         
     def forward(self, x):
-        # x = self.seg_input(x)
         x1 = self.seg_block1(x)
         x2 = self.seg_block2(x1)
         x3 = self.seg_block3(x2)
