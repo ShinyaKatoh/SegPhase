@@ -1,5 +1,5 @@
 # SegPhase : Development of Arrival Time Picking Models for Japan’s Seismic Network Using the Hierarchical Vision Transformer  
-https://www.researchsquare.com/article/rs-4291782/v1  
+(https://earth-planets-space.springeropen.com/articles/10.1186/s40623-025-02249-y)
 ## Model Structure  
 ![Test Image 1](/images/SegPhase-1.png)　　
 ## How to use  
